@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="script.js" defer></script>
+    <title>Tic Tac Toe Game</title>
+  </head>
+  <body>
+    <header>
+      <div><h1>This is Tic Tac Toe Game</h1></div>
+      <div><button onclick="setPlayer()">START</button></div>
+    </header>
+    <main>
+      <div class="arena">
+        <div class="firstRow">
+          <div class="div1" onclick="selectCell(`div1`)"></div>
+          <div class="div2" onclick="selectCell(`div2`)"></div>
+          <div class="div3" onclick="selectCell(`div3`)"></div>
+        </div>
+        <div class="secondRow">
+          <div class="div4" onclick="selectCell(`div4`)"></div>
+          <div class="div5" onclick="selectCell(`div5`)"></div>
+          <div class="div6" onclick="selectCell(`div6`)"></div>
+        </div>
+        <div class="thirdRow">
+          <div class="div7" onclick="selectCell(`div7`)"></div>
+          <div class="div8" onclick="selectCell(`div8`)"></div>
+          <div class="div9" onclick="selectCell(`div9`)"></div>
+        </div>
+      </div>
+      <div class="currentWinner"><h2>Winner is:</h2></div>
+    </main>
+    <section class="chart">
+      <div><h3>Winners</h3></div>
+      <div>Winners</div>
+    </section>
+  </body>
+</html>
