@@ -144,10 +144,13 @@ const secondCross= [value3, value5, value7];
 
     if (firstRX === true || secondRX === true || thirdRX === true || firstCX === true || secondCX === true || thirdCX === true || firstCrossX === true || secondCrossX === true){
         console.log("Winner is Player 1");
+        displayImage('winner.gif', 200, 200);
+
     }
 
     if (firstRO === true || secondRO === true || thirdRO === true || firstCO === true || secondCO === true || thirdCO === true || firstCrossO === true || secondCrossO === true ){
         console.log("Winner is Player 2");
+        displayImage('winner.gif', 200, 200);
     }
 
     return;
@@ -156,7 +159,12 @@ const secondCross= [value3, value5, value7];
 
  checkWinner(firstRow, secondRow, thirdRow, firstColumn, secondColumn, thirdColumn, firstCross, secondCross);
 
+///Wyświetlenie winnera w polu "currentWinner w HTML"
 
+///Zapisanie currentWinnera do "chart"
+/// Blokada gry kiedy jest winner ///
+
+///Guzik "start" resetuje arenę, nowa gra ///
 
 
 
@@ -169,5 +177,13 @@ const secondCross= [value3, value5, value7];
 
 
 
+
+function displayImage(src, width, height) {
+    var img = document.createElement("img");
+    img.src = src;
+    img.width = width;
+    img.height = height;
+    document.body.appendChild(img);
+   }
 
 
