@@ -1,9 +1,27 @@
 const Player1="X";
 const Player2="O";
 
+let getLocalStorageName1 = localStorage.getItem("player1Name");
+let getLocalStorageName2 = localStorage.getItem("player2Name");
+
+
+function setName(){
+    
+    let player1Name = document.getElementById('Player1name').value;
+    let player2Name=document.getElementById('Player2name').value;
+
+    localStorage.setItem("player1Name", player1Name);
+    localStorage.setItem("player2Name", player2Name);
+
+    }
+    
+
+
 function setPlayer(){
+    setName();
+    document.location.reload(true);
     let setStorage = sessionStorage.setItem("player","O");
-    console.log(setStorage);
+
 }
 
 
@@ -143,13 +161,14 @@ const secondCross= [value3, value5, value7];
 
 
     if (firstRX === true || secondRX === true || thirdRX === true || firstCX === true || secondCX === true || thirdCX === true || firstCrossX === true || secondCrossX === true){
-        console.log("Winner is Player 1");
+        document.querySelector(".showPlayer").innerHTML=`${getLocalStorageName1}`;
         displayImage('winner.gif', 200, 200);
 
     }
 
     if (firstRO === true || secondRO === true || thirdRO === true || firstCO === true || secondCO === true || thirdCO === true || firstCrossO === true || secondCrossO === true ){
         console.log("Winner is Player 2");
+        document.querySelector(".showPlayer").innerHTML=`${getLocalStorageName2}`;
         displayImage('winner.gif', 200, 200);
     }
 
@@ -159,17 +178,7 @@ const secondCross= [value3, value5, value7];
 
  checkWinner(firstRow, secondRow, thirdRow, firstColumn, secondColumn, thirdColumn, firstCross, secondCross);
 
-///Wyświetlenie winnera w polu "currentWinner w HTML"
-
-///Zapisanie currentWinnera do "chart"
 /// Blokada gry kiedy jest winner ///
-
-///Guzik "start" resetuje arenę, nowa gra ///
-
-
-
-
-
 
 
 
@@ -183,7 +192,8 @@ function displayImage(src, width, height) {
     img.src = src;
     img.width = width;
     img.height = height;
-    document.body.appendChild(img);
+    var imgShow = document.querySelector(".imgDisplay");
+    imgShow.appendChild(img)
    }
 
 

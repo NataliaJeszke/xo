@@ -6,11 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="styles.css" />
     <script src="script.js" defer></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap"
+      rel="stylesheet"
+    />
     <title>Tic Tac Toe Game</title>
   </head>
   <body>
     <header>
-      <div><h1>This is Tic Tac Toe Game</h1></div>
+      <div><h1>Tic Tac Toe Game</h1></div>
+      <div>
+        <label for="name">Player 1 NAME</label>
+        <input type="text" id="Player1name" name="name" />
+      </div>
+      <div>
+        <label for="name">Player 2 NAME</label>
+        <input type="text" id="Player2name" name="name" />
+
+      </div>
+      <div><p>Press "Start" button to start/refresh game</p></div>
       <div><button onclick="setPlayer()">START</button></div>
     </header>
     <main>
@@ -31,11 +47,11 @@
           <div class="div9" onclick="selectCell(`div9`)"></div>
         </div>
       </div>
-      <div class="currentWinner"><h2>Winner is:</h2></div>
+      <div class="currentWinner">
+        <h2 class="winner">Winner is:</h2>
+        <p class="showPlayer"></p>
+        <p class="imgDisplay"></p>
+      </div>
     </main>
-    <section class="chart">
-      <div><h3>Winners</h3></div>
-      <div>Winners</div>
-    </section>
   </body>
 </html>
