@@ -1,10 +1,37 @@
 const Player1="X";
 const Player2="O";
 
+let gameEnd=false;
+
+///// Setting players names without losing data in the inputs after refresh /////
 let getLocalStorageName1 = localStorage.getItem("player1Name");
 let getLocalStorageName2 = localStorage.getItem("player2Name");
 
+function getName(){
+let name1 = document.querySelector("#Player1name");
+name1.value = localStorage.getItem("player1Name");
+let cancel
+Player1name.addEventListener("keyup", event => {
+  if (cancel) clearTimeout(cancel)
+  cancel = setTimeout(() => {
+    localStorage.setItem("player1Name", event.target.value)
+  }, 1000)
+});
 
+let name2 = document.querySelector("#Player2name");
+name2.value = localStorage.getItem("player2Name");
+let cancel2
+Player2name.addEventListener("keyup", event => {
+  if (cancel2) clearTimeout(cancel2)
+  cancel2 = setTimeout(() => {
+    localStorage.setItem("player2Name", event.target.value)
+  }, 1000)
+});
+
+}
+getName();
+
+////////// Getting players names from inputs and setting to local storage //////////
 function setName(){
     
     let player1Name = document.getElementById('Player1name').value;
@@ -14,17 +41,17 @@ function setName(){
     localStorage.setItem("player2Name", player2Name);
 
     }
-    
 
 
-function setPlayer(){
+///// START button /////
+function start(){
     setName();
-    document.location.reload(true);
+    document.location.reload();
     let setStorage = sessionStorage.setItem("player","O");
-
+    gameEnd=false;
 }
 
-
+///// Alternate players and block already used (x/o) div /////
 let selectCell = (className) => {
     let div = document.querySelector("." + className);
         if (div.innerHTML === ""){
@@ -41,31 +68,15 @@ let selectCell = (className) => {
 
     /// Getting values for every div in our arena ///
 const value1 = document.querySelector(".div1").innerHTML;
-console.log(value1);
-
 const value2 = document.querySelector(".div2").innerHTML;
-console.log(value2);
-
 const value3 = document.querySelector(".div3").innerHTML;
-console.log(value3);
-
 const value4 = document.querySelector(".div4").innerHTML;
-console.log(value4);
-
 const value5 = document.querySelector(".div5").innerHTML;
-console.log(value5);
-
 const value6 = document.querySelector(".div6").innerHTML;
-console.log(value6);
-
 const value7 = document.querySelector(".div7").innerHTML;
-console.log(value7);
-
 const value8 = document.querySelector(".div8").innerHTML;
-console.log(value8);
-
 const value9 = document.querySelector(".div9").innerHTML;
-console.log(value9);
+
 
 
 ///// First solution to check the winner /////
@@ -163,30 +174,43 @@ const secondCross= [value3, value5, value7];
     if (firstRX === true || secondRX === true || thirdRX === true || firstCX === true || secondCX === true || thirdCX === true || firstCrossX === true || secondCrossX === true){
         document.querySelector(".showPlayer").innerHTML=`${getLocalStorageName1}`;
         displayImage('winner.gif', 200, 200);
-
+        gameEnd=true;
+        
     }
+
 
     if (firstRO === true || secondRO === true || thirdRO === true || firstCO === true || secondCO === true || thirdCO === true || firstCrossO === true || secondCrossO === true ){
         console.log("Winner is Player 2");
         document.querySelector(".showPlayer").innerHTML=`${getLocalStorageName2}`;
         displayImage('winner.gif', 200, 200);
+        gameEnd=true;
     }
+    ///// Block ARENA after winning /////
+    if (gameEnd === true){
+        (function () {
+            function cancel () { return false; };
+            document.querySelector(".arena").disabled = true;
+            var nodes = document.querySelector(".arena").getElementsByTagName('*');
+            console.log(nodes);
+            for (var i = 0; i < nodes.length; i++) {
+                nodes[i].setAttribute('disabled', true);
+                nodes[i].onclick = cancel;
+            }
+        }());
+        return;
+      }
 
     return;
-
  }
 
  checkWinner(firstRow, secondRow, thirdRow, firstColumn, secondColumn, thirdColumn, firstCross, secondCross);
-
-/// Blokada gry kiedy jest winner ///
-
 
 
 };
 
 
 
-
+////////// Function to display winner GIF as a reward //////////
 function displayImage(src, width, height) {
     var img = document.createElement("img");
     img.src = src;
@@ -194,6 +218,6 @@ function displayImage(src, width, height) {
     img.height = height;
     var imgShow = document.querySelector(".imgDisplay");
     imgShow.appendChild(img)
-   }
+}
 
 
